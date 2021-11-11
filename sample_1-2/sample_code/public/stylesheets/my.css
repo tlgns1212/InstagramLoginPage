@@ -1,0 +1,23 @@
+#user-name {
+  color: green;
+}
+
+.univ {
+  color: blue;
+}
+
+.test-text {
+  font-size: 50px;
+  color: red;
+}
+
+#click-me {
+  cursor: pointer;
+  font-size: 100px;
+  color: grey;
+}
+
+#koreatech-image {
+  width: 500px;
+  height: 200px;
+}
