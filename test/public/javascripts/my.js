@@ -1,1 +1,5 @@
-alert("12345789")
+$('h1').click(function (){
+    alert('clicked h1')
+})
+
+console.log($('h1'));
