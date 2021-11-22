@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>회원가입 페이지</title>
+    <!-- public/stylesheets/my.css -->
+    <link rel="stylesheet" href="/stylesheets/signup.css" />
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const result = "<%-result %>";
+      const message = "<%-message %>";
+    </script>
+  </head>
+
+  <body>
+    <div class="card text-center" style="width: 25rem">
+      <div class="card-body">
+        <h5 class="card-title">Signup Page</h5>
+
+        <form
+          id="signup-form"
+          action="/signup"
+          method="post"
+          onsubmit="return signupSubmit();"
+        >
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              name="id"
+              class="form-control"
+              id="id"
+              placeholder="ID"
+            />
+            <label for="id">ID</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+            />
+            <label for="password">Password</label>
+          </div>
+
+          <div class="form-floating">
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              id="name"
+              placeholder="Name"
+            />
+            <label for="name">Name</label>
+          </div>
+
+          <div class="d-grid gap-2 mb-3">
+            <button id="signup-button" class="btn btn-danger btn-lg">
+              Sign up
+            </button>
+          </div>
+        </form>
+
+        <div class="d-grid gap-2">
+          <button id="login-page-button" class="btn btn-primary btn-lg">
+            Login Page
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/javascripts/signup.js"></script>
+  </body>
+</html>

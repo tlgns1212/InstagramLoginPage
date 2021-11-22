@@ -1,0 +1,15 @@
+body {
+  display: flex;
+  height: 100vh;
+  place-items: center;
+  place-content: center;
+  background-color: lightblue !important;
+}
+
+#signup-button {
+  margin-top: 20px;
+}
+
+.card-title {
+  margin-bottom: 20px !important;
+}

@@ -1,0 +1,16 @@
+body {
+  display: flex;
+  height: 100vh;
+  place-items: center;
+  place-content: center;
+  background-color: lightblue !important;
+}
+
+#logo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#login-button {
+  margin-top: 20px;
+}

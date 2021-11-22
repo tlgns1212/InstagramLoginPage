@@ -1,13 +1,14 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const mariadb = require("mariadb");
 
+//mariadb 연결
 let pool = mariadb.createPool({
-  host: "127.0.0.1", 
-  database: "db-test",
-  user: "root",
-  port: "3306",
-  password: "a123456"
+  host: "127.0.0.1", //호스트 (로컬)
+  database: "db-test", //데이터베이스 명
+  port: "3308", //설치 때 지정한 포트
+  user: "root", //아이디
+  password: "123123", //패스워드
 });
 
 //sql 실행 함수
@@ -18,6 +19,8 @@ function executeQuery(query) {
       .getConnection()
       //db 커넥션 잘 되있음.
       .then((conn) => {
+        console.log(query);
+
         //쿼리 실행
         conn
           .query(query)
@@ -37,58 +40,92 @@ function executeQuery(query) {
   });
 }
 
-
-/* GET home page. */
+//기본은 로그인 페이지로
 router.get("/", async function (req, res, next) {
-  //C (create = insert)
-  let insertTest = await executeQuery(
-    "INSERT INTO comment (list_index, comment, user) VALUE (1, 'insert test!!!!', 'insik')"
-  );
-  console.log("insert-------------");
-  console.log(insertTest);
-
-  //R (read)
-  let selectTest = await executeQuery("SELECT * FROM image");
-  // let selectTest = await executeQuery("SELECT * FROM image WHERE image_index = 2");
-  console.log("select-------------");
-  console.log(selectTest);
-
-  //U (update)
-  let updateTest = await executeQuery("UPDATE list SET title = '노동 동요'");
-  console.log("update-------------");
-  console.log(updateTest);
-
-  //D (delete)
-  let deleteTest = await executeQuery("DELETE FROM user");
-  // let deleteTest = await executeQuery("DELETE FROM user WHERE user_index = 1");
-  console.log("delete-------------");
-  console.log(deleteTest);
-
-  res.render("index", { title: "Express" });
+  return res.redirect("/login");
 });
 
-
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log('--------------------------')
-  res.render('index', { title: 'Express' });
-});
-
-router.get('/test', function(req, res, next) {
-  console.log('--------------------------')   // 터미널
-  res.send('index');
-});
-
-
-
-router.get('/hello_world', function(req, res, next) {
-  res.render("index", {
-    lecture: "산업체특강 1주차",
-    university: "한기대 컴공",
-    name: "김시훈",
-    title: "sihoon"
+//로그인 페이지 렌더링
+router.get("/login", function (req, res, next) {
+  return res.render("login", {
+    result: req.query.result,
+    message: req.query.message,
   });
+});
+
+//로그인 로직
+router.post("/login", async function (req, res, next) {
+  let id = req.body.id;
+  let password = req.body.password;
+  let message;
+
+  //id 검색
+  let selectId = await executeQuery(`
+    SELECT 
+      * 
+    FROM 
+      user email = '${id}'
+  `);
+
+  //id가 없을 경우
+  if (selectId.length === 0) {
+    message = "?result=false&message=회원 목록에 없습니다.";
+    return res.redirect("/login" + message);
+  } else {
+    //id가 있지만 password가 틀린경우
+    if (selectId[0].password !== password) {
+      message = "?result=false&message=비밀번호가 틀렸습니다.";
+      return res.redirect("/login" + message);
+    }
+  }
+
+  //main page로
+  return res.redirect("/main");
+});
+
+//회원가입 페이지 렌더링
+router.get("/signup", function (req, res, next) {
+  return res.render("signup", {
+    result: req.query.result,
+    message: req.query.message,
+  });
+});
+
+//회원가입 로직
+router.post("/signup", async function (req, res, next) {
+  let id = req.body.id;
+  let password = req.body.password;
+  let name = req.body.name;
+
+  //id 검색
+  let selectId = await executeQuery(`
+    SELECT 
+      * 
+    FROM 
+      user email = '${id}'
+  `);
+
+  //id가 없을 경우
+  if (selectId.length === 0) {
+    // 회원 추가
+    await executeQuery(`
+      INSERT INTO 
+        user 
+          (email, password, name) 
+        VALUE 
+          ('${id}', '${password}', '${name}');
+    `);
+
+    //로그인 페이지로 되돌아가기
+    return res.redirect("/login");
+  } else {
+    return res.redirect("/signup?result=false&message=아이디가 중복됩니다.");
+  }
+});
+
+//메인 페이지 렌더링
+router.get("/main", function (req, res, next) {
+  return res.render("main", {});
 });
 
 module.exports = router;
