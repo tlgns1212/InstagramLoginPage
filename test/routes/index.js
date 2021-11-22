@@ -42,6 +42,7 @@ function executeQuery(query) {
 
 //기본은 로그인 페이지로
 router.get("/", async function (req, res, next) {
+  console.log(req.session);
   return res.redirect("/login");
 });
 
