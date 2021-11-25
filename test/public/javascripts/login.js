@@ -22,3 +22,24 @@ function loginSubmit() {
 
   return true;
 }
+
+$("#google-login").click(function () {
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      const user = result.user;
+
+      $.ajax({
+        url: "/set-session",
+        method: "post",
+        data: {
+          user: user.providerData[0],
+        },
+        success: function (result) {
+          location.href = "/main";
+        },
+      });
+    })
+    .catch((error) => {});
+});

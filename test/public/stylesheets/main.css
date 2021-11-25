@@ -1,0 +1,22 @@
+body {
+  height: 100vh;
+  background-color: lightblue !important;
+}
+
+.content-header {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.card-time {
+  font-size: 13px;
+  color: grey;
+}
+
+.display-name {
+  font-size: 20px;
+}
+
+.logout {
+  margin-left: 20px;
+}

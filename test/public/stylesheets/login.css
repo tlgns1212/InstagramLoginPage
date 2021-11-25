@@ -14,3 +14,8 @@ body {
 #login-button {
   margin-top: 20px;
 }
+
+#google-login {
+  width: 60px;
+  cursor: pointer;
+}

@@ -6,21 +6,28 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
 var app = express();
 
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+// session 추가
 var session = require("express-session");
+
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: "asadlfkj!@#!@#dfgasdg",
     resave: false,
     saveUninitialized: true,
   })
 );
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+// body parser 추가
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.json({}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(logger("dev"));
 app.use(express.json());
