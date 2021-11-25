@@ -13,26 +13,17 @@ let pool = mariadb.createPool({
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
-
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC_FlbYm1QYmiz68EI1AXYaigmomcqwygc",
-  authDomain: "test-9dc59.firebaseapp.com",
-  projectId: "test-9dc59",
-  storageBucket: "test-9dc59.appspot.com",
-  messagingSenderId: "664644789191",
-  appId: "1:664644789191:web:179572dcfdc441123d6fe2",
-  measurementId: "G-QK810EY7TX",
+  apiKey: "AIzaSyCIwoRBnDhQpfEP47U7IetJaYZ9zZhaR3c",
+  authDomain: "web-test-36eb3.firebaseapp.com",
+  projectId: "web-test-36eb3",
+  storageBucket: "web-test-36eb3.appspot.com",
+  messagingSenderId: "615469979096",
+  appId: "1:615469979096:web:93a0c2eb61ceffdafd0ead",
 };
 
 // Initialize Firebase
