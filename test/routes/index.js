@@ -8,7 +8,7 @@ let pool = mariadb.createPool({
   database: "db-test", //데이터베이스 명
   port: "3306", //설치 때 지정한 포트
   user: "root", //아이디
-  password: "123123", //패스워드
+  password: "a123456", //패스워드
 });
 
 // Import the functions you need from the SDKs you need
@@ -28,6 +28,45 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+// const auth = getAuth();
+// createUserWithEmailAndPassword(auth, "sihoon@test.com", "a123456")
+//   .then((userCredential) => {
+//     // Signed in
+//     const user = userCredential.user;
+//     console.log("11111");
+//     console.log(user);
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     console.log("2222");
+//     console.log(error);
+//     // ..
+//   });
+
+// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+// const auth = getAuth();
+// signInWithEmailAndPassword(auth, "sihoon@test.com", "a123456")
+//   .then((userCredential) => {
+//     // Signed in
+//     console.log("success-------------------------------------");
+//     console.log(user);
+//     const user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     console.log("fail-------------------------------------");
+//     console.log(error);
+//   });
+
+// console.log();
 
 //sql 실행 함수
 function executeQuery(query) {
